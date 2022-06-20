@@ -1,8 +1,8 @@
 .element__container {
     display: flex;
     justify-content: space-between;
+    height: 100%;
     border-radius: 0px 0px 10px 10px;
-    height: 100%; 
     max-width: 100%;
     color: black;
     background-color: white;
