@@ -6,9 +6,10 @@
     width: 24px;
     height: 24px;
     border: none;
+    outline: none;
     background-position: center;
     transition: 0.2s linear;
-    margin-left: 25px;
+    margin-left: 18px;
     align-self: flex-end;
     margin-bottom: 8px;
     cursor: pointer;

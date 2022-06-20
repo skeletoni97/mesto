@@ -1,5 +1,5 @@
 .element__title {
-    margin: 25px 0 0 21px;
+    margin: 27px 0 26px 21px;
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
@@ -7,4 +7,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+@media screen and (max-width: 500px) {
+    .element__title {
+        margin: 24px 0 26px 21px;
+    }
 }

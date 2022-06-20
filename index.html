@@ -13,7 +13,6 @@
     <header class="header">
       <div class="header__logo">
       </div>
-      <img class="header__line" src="./image/Line.png" alt="линия">
     </header>
     <main class="content">
       <section class="profile">
@@ -21,11 +20,11 @@
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button type="submit" class="profile__button"></button>
+            <button type="button" class="profile__button"></button>
           </div>
           <p class="profile__status">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
         <div class="element">
@@ -77,12 +76,12 @@
     </footer>
   </div>
   <div class="popup">
-    <div class="popup__body">
-      <form class="popup__content">
-        <a href="#" class="popup__close"></a>
-        <div class="popup__title">Редактировать профиль</div>
-        <input class="popup__form popup__name" type="text">
-        <input class="popup__form popup__status" type="text">
+    <div class="popup__container">
+      <form name="popup" class="popup__content">
+        <button type="buttom" class="popup__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__form popup__form_name" type="text">
+        <input class="popup__form popup__form_status" type="text">
         <button class="popup__button-save" type="submit">Сохранить</button>
       </form>
     </div>
