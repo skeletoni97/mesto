@@ -7,6 +7,8 @@ let jobInput = document.querySelector('.popup__input_field_status');
 let profileName = document.querySelector('.profile__name');
 let profileStatus = document.querySelector('.profile__status');
 
+
+
 const elements = document.querySelector('.elements');
 const directorTemplate = document.querySelector('.element-template').content;
 const initialCards = [
@@ -41,9 +43,23 @@ initialCards.forEach(function(element) {
 
   card.querySelector('.element__title').textContent = element.name;
   card.querySelector('.element__image').src = element.link;
-
+ card.querySelector('.element__like').addEventListener('click', function (element) {
+    element.target.classList.toggle('element__like_active');
+  });
   elements.append(card);
 })
+
+const profileAddButton = document.querySelector('.profile__add-button')
+
+function openPopupp() {
+  popup.classList.add('popup_opened');
+  nameInput.value = '';
+  jobInput.value = '' ;
+}
+
+profileAddButton.addEventListener('click', openPopupp);
+
+
 
 
 
@@ -64,6 +80,8 @@ function formSubmitHandler(event) {
   profileStatus.textContent = jobInput.value;
   closePopup();
 }
+
+
 
 profileButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
