@@ -107,7 +107,7 @@ function formSubmitHandlerr(evt) {
     link:inputCardLink.value
     };
   addCard(element);
-  closePopupp();
+  closePopup(evt);;
 }
 
 profileAddButton.addEventListener('click', openPopupAddImg);
@@ -128,7 +128,7 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileStatus.textContent = jobInput.value;
-  closePopup();
+  closePopup(evt);
 }
 
 popupCloseList.forEach(popupClose => {
@@ -137,6 +137,9 @@ popupCloseList.forEach(popupClose => {
   });
 
 })
+function closePopup (evt) {
+  evt.target.closest('.popup_opened').classList.remove('popup_opened')
+}
 
 profileButton.addEventListener('click', openPopupProfile);
 formElement.addEventListener('submit', formSubmitHandler);
