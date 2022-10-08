@@ -72,7 +72,7 @@ function openPopupAddImg() {
   inputCardLink.value = "";
 }
 
-function formSubmitHandlerr(evt) {
+function submitEditPhotoForm(evt) {
   evt.preventDefault();
   const element = {
     name: inputCardName.value,
@@ -83,7 +83,7 @@ function formSubmitHandlerr(evt) {
 }
 
 profileAddButton.addEventListener("click", openPopupAddImg);
-popupButtonAdd.addEventListener("submit", formSubmitHandlerr);
+popupButtonAdd.addEventListener("submit", submitEditPhotoForm);
 
 // Попап профиль//
 function openPopupProfile() {
@@ -96,7 +96,7 @@ function openPopup(popup) {
   popup.classList.add("popup_opened");
 }
 
-function formSubmitHandler(evt) {
+function submitEditProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileStatus.textContent = jobInput.value;
@@ -112,7 +112,7 @@ function closePopup(popup) {
 }
 
 profileButton.addEventListener("click", openPopupProfile);
-formElement.addEventListener("submit", formSubmitHandler);
+formElement.addEventListener("submit", submitEditProfileForm);
 
 //comment
 
