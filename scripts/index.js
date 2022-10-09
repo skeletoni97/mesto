@@ -78,7 +78,7 @@ function submitEditPhotoForm(evt) {
     link: inputCardLink.value,
   };
   addCard(createCard(element.name, element.link));
-  closePopup(evt);
+  closePopup(popupAddPhoto);
 }
 
 profileAddButton.addEventListener("click", openPopupAddImg);
@@ -99,7 +99,7 @@ function submitEditProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileStatus.textContent = jobInput.value;
-  closePopup(evt);
+  closePopup(popupEditProfile);
 }
 
 
