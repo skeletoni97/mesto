@@ -1,5 +1,6 @@
 const profileButton = document.querySelector(".profile__button");
 const popup = document.querySelector(".popup");
+const popupEditProfile = document.querySelector(".popup-edit-profile");
 const popupCloseList = document.querySelectorAll(".popup__close");
 const formElement = document.querySelector(".popup__content");
 const nameInput = document.querySelector(".popup__input_field_name");
@@ -49,12 +50,10 @@ function handleOpenImgFullScreen(add) {
   popupImage.src = add.target.src;
   popupText.textContent = add.target.alt;
   popupImage.alt = popupText.textContent;
-  openPopupImg();
-}
-
-function openPopupImg() {
   openPopup(popupShowPhoto);
 }
+
+
 
 function handleLike(evt) {
   const currentLike = evt.target.closest(".element__like"); //только первый родитель
@@ -87,7 +86,7 @@ popupButtonAdd.addEventListener("submit", submitEditPhotoForm);
 
 // Попап профиль//
 function openPopupProfile() {
-  openPopup(popup);
+  openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
 }
@@ -103,16 +102,24 @@ function submitEditProfileForm(evt) {
   closePopup(evt);
 }
 
-popupCloseList.forEach(popupClose =>
-  popupClose.addEventListener("click", evt => closePopup(evt))
-);
 
 function closePopup(popup) {
-  popup.target.closest(".popup_opened").classList.remove("popup_opened");
+  popup.classList.remove("popup_opened");
 }
+
+const popupClosePhoto = document.querySelector('.popup__close_show-photo');
+popupClosePhoto.addEventListener("click", () => closePopup(popupShowPhoto));
+
+const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
+popupCloseAddPhoto.addEventListener("click", () => closePopup(popupAddPhoto));
+
+const popupCloseProfile = document.querySelector('.popup__close-profile');
+popupCloseProfile.addEventListener("click", () => closePopup(popupEditProfile));
+
 
 profileButton.addEventListener("click", openPopupProfile);
 formElement.addEventListener("submit", submitEditProfileForm);
+
 
 //comment
 
