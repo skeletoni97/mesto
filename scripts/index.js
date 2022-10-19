@@ -16,6 +16,8 @@ const elements = document.querySelector(".elements");
 const directorTemplate = document.querySelector(".element-template").content;
 const inputCardName = document.querySelector(".popup__input_card_name");
 const inputCardLink = document.querySelector(".popup__input_card_link");
+const buttonAddFoto = document.querySelector('.popup__button-profil-add');
+
 //перебор массива
 initialCards.forEach(element => addCard(createCard(element.name, element.link)));
 
@@ -34,8 +36,6 @@ function addCard(card) {
 }
 
 function setListenersForButtons(element) {
-  const cardLikeButton = element.querySelector(".element__like");
-  cardLikeButton.addEventListener("click", handleLike);
   const cardDeleteButton = element.querySelector(".element__delete-card");
   cardDeleteButton.addEventListener("click", handleDelete);
   const openImgButton = element.querySelector(".element__image");
@@ -55,10 +55,7 @@ function handleOpenImgFullScreen(add) {
 
 
 
-function handleLike(evt) {
-  const currentLike = evt.target.closest(".element__like"); //только первый родитель
-  currentLike.classList.toggle("element__like_active");
-}
+
 
 function handleDelete(evt) {
   const currentCard = evt.target.closest(".element"); //только первый родитель
@@ -69,6 +66,7 @@ function openPopupAddImg() {
   openPopup(popupAddPhoto);
   inputCardName.value = "";
   inputCardLink.value = "";
+  buttonAddFoto.classList.add('popup__button_disabled');
 }
 
 function submitEditPhotoForm(evt) {
@@ -107,8 +105,22 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
+document.addEventListener('keydown', evt => {
+  if (evt.keyCode123 === 27 || evt.key === 'Escape') {
+    popupArray = [
+      popupShowPhoto,
+      popupAddPhoto, 
+      popupEditProfile
+    ];
+    popupArray.forEach(closePopup);
+  }
+});
+
 const popupClosePhoto = document.querySelector('.popup__close_show-photo');
 popupClosePhoto.addEventListener("click", () => closePopup(popupShowPhoto));
+popupClosePhoto.addEventListener('keydown', evt => {
+  if (evt.keyCode === 27 || evt.key === 'Escape')closePopup(popupShowPhoto);
+});
 
 const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
 popupCloseAddPhoto.addEventListener("click", () => closePopup(popupAddPhoto));
@@ -130,3 +142,20 @@ big comment
  *
  * @param {*} evt - is thebset
  */
+//  document.addEventListener('keydown', function () {
+//   console.log('На что ни нажми — я появлюсь');
+// }); 
+
+inputCardName.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter'){
+  console.log(evt);
+     }
+});
+
+elements.addEventListener('click', function (evt) {
+  console.log(evt)
+  if (evt.target.classList.contains('element__like'))
+   evt.target.classList.toggle('element__like_active');
+ });
+ 
+ 
