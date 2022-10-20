@@ -7,47 +7,47 @@ enableValidation ({
   errorClass: "popup__error_visible",
 });
 
-function enableValidation(set) {
-  const allForms = document.querySelectorAll(set.formSelector);
+function enableValidation(setting) {
+  const allForms = document.querySelectorAll(setting.formSelector);
   for (const form of allForms) {
-    hendValiditeImput(set, form);
+    hendValiditeImput(setting, form);
   }
 } 
 
-function isValidField(set, input) {
+function isValidField(setting, input) {
   const errorElement = input.parentNode.querySelector(`#${input.id}-error`);//добавит часть id
 
   errorElement.textContent = input.validationMessage; //хранит поля ошибок
 
   if (errorElement.textContent !== "") {
-    input.classList.add(set.inputErrorClass);
-    errorElement.classList.add(set.errorClass);
+    input.classList.add(setting.inputErrorClass);
+    errorElement.classList.add(setting.errorClass);
   } 
   if (errorElement.textContent === "")
   {
-    input.classList.remove(set.inputErrorClass);
-    errorElement.classList.remove(set.errorClass);
+    input.classList.remove(setting.inputErrorClass);
+    errorElement.classList.remove(setting.errorClass);
   }
 }
 
-function setSubmitButton(set, button, state) {
+function setSubmitButton(setting, button, state) {
   if (state) {
     button.removeAttribute("disabled");
-    button.classList.remove(set.inactiveButtonClass);
+    button.classList.remove(setting.inactiveButtonClass);
   } else {
     button.setAttribute("disabled", true);
-    button.classList.add(set.inactiveButtonClass);
+    button.classList.add(setting.inactiveButtonClass);
   }
 }
 
-function hendValiditeImput(set, form) {
-  const currentForm = Array.from(form.querySelectorAll(set.inputSelector));
-  const submitButton = form.querySelector(set.submitButtonSelector);
+function hendValiditeImput(setting, form) {
+  const currentForm = Array.from(form.querySelectorAll(setting.inputSelector));
+  const submitButton = form.querySelector(setting.submitButtonSelector);
 
   for (let input of currentForm) {
     input.addEventListener("input", () => {
-      isValidField(set, input);
-      setSubmitButton(set, submitButton, form.checkValidity());
+      isValidField(setting, input);
+      setSubmitButton(setting, submitButton, form.checkValidity());
     });
   }
 }
