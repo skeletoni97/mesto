@@ -18,7 +18,6 @@ const inputCardName = document.querySelector(".popup__input_card_name");
 const inputCardLink = document.querySelector(".popup__input_card_link");
 const buttonAddFoto = document.querySelector('.popup__button-profil-add');
 
-//перебор массива
 initialCards.forEach(element => addCard(createCard(element.name, element.link)));
 
 function createCard(title, link) {
@@ -53,10 +52,6 @@ function handleOpenImgFullScreen(add) {
   openPopup(popupShowPhoto);
 }
 
-
-
-
-
 function handleDelete(evt) {
   const currentCard = evt.target.closest(".element"); //только первый родитель
   currentCard.remove();
@@ -82,7 +77,6 @@ function submitEditPhotoForm(evt) {
 profileAddButton.addEventListener("click", openPopupAddImg);
 popupButtonAdd.addEventListener("submit", submitEditPhotoForm);
 
-// Попап профиль//
 function openPopupProfile() {
   openPopup(popupEditProfile);
   nameInput.value = profileName.textContent;
@@ -118,22 +112,61 @@ document.addEventListener('keydown', evt => {
 
 const popupClosePhoto = document.querySelector('.popup__close_show-photo');
 popupClosePhoto.addEventListener("click", () => closePopup(popupShowPhoto));
-popupClosePhoto.addEventListener('keydown', evt => {
-  if (evt.keyCode === 27 || evt.key === 'Escape')closePopup(popupShowPhoto);
+
+popupShowPhoto.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+    closePopup(popupShowPhoto);
+  }
 });
 
 const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
 popupCloseAddPhoto.addEventListener("click", () => closePopup(popupAddPhoto));
 
+popupAddPhoto.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+    closePopup(popupAddPhoto);
+  }
+});
+
 const popupCloseProfile = document.querySelector('.popup__close-profile');
 popupCloseProfile.addEventListener("click", () => closePopup(popupEditProfile));
 
+popupEditProfile.addEventListener('mousedown', (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+    closePopup(popupEditProfile);
+  }
+});
 
 profileButton.addEventListener("click", openPopupProfile);
 formElement.addEventListener("submit", submitEditProfileForm);
 
+elements.addEventListener('click', function (evt) {
+  console.log(evt)
+  if (evt.target.classList.contains('element__like'))
+   evt.target.classList.toggle('element__like_active');
+ });
 
-//comment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //comment
 
 /*
 big comment
@@ -145,17 +178,3 @@ big comment
 //  document.addEventListener('keydown', function () {
 //   console.log('На что ни нажми — я появлюсь');
 // }); 
-
-inputCardName.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter'){
-  console.log(evt);
-     }
-});
-
-elements.addEventListener('click', function (evt) {
-  console.log(evt)
-  if (evt.target.classList.contains('element__like'))
-   evt.target.classList.toggle('element__like_active');
- });
- 
- 
