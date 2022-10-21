@@ -62,6 +62,7 @@ function openPopupAddImg() {
   inputCardName.value = "";
   inputCardLink.value = "";
   buttonAddFoto.classList.add('popup__button_disabled');
+  buttonAddFoto.setAttribute("disabled", true);
 }
 
 function submitEditPhotoForm(evt) {
@@ -85,6 +86,7 @@ function openPopupProfile() {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function submitEditProfileForm(evt) {
@@ -97,51 +99,71 @@ function submitEditProfileForm(evt) {
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', closeByEscape);
 }
 
-document.addEventListener('keydown', evt => {
-  if (evt.keyCode123 === 27 || evt.key === 'Escape') {
-    popupArray = [
-      popupShowPhoto,
-      popupAddPhoto, 
-      popupEditProfile
-    ];
-    popupArray.forEach(closePopup);
+// document.addEventListener('keydown', evt => {
+//   if (evt.keyCode123 === 27 || evt.key === 'Escape') {
+//     popupArray = [
+//       popupShowPhoto,
+//       popupAddPhoto, 
+//       popupEditProfile
+//     ];
+//     popupArray.forEach(closePopup);
+//   }
+// });
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
-});
+}
 
-const popupClosePhoto = document.querySelector('.popup__close_show-photo');
-popupClosePhoto.addEventListener("click", () => closePopup(popupShowPhoto));
+const popups = document.querySelectorAll('.popup')
 
-popupShowPhoto.addEventListener('mousedown', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closePopup(popupShowPhoto);
-  }
-});
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+          closePopup(popup)
+        }
+    })
+})
 
-const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
-popupCloseAddPhoto.addEventListener("click", () => closePopup(popupAddPhoto));
+// const popupClosePhoto = document.querySelector('.popup__close_show-photo');
+// popupClosePhoto.addEventListener("click", () => closePopup(popupShowPhoto));
 
-popupAddPhoto.addEventListener('mousedown', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closePopup(popupAddPhoto);
-  }
-});
+// popupShowPhoto.addEventListener('mousedown', (evt) => {
+//   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+//     closePopup(popupShowPhoto);
+//   }
+// });
 
-const popupCloseProfile = document.querySelector('.popup__close-profile');
-popupCloseProfile.addEventListener("click", () => closePopup(popupEditProfile));
+// const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
+// popupCloseAddPhoto.addEventListener("click", () => closePopup(popupAddPhoto));
 
-popupEditProfile.addEventListener('mousedown', (evt) => {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
-    closePopup(popupEditProfile);
-  }
-});
+// popupAddPhoto.addEventListener('mousedown', (evt) => {
+//   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+//     closePopup(popupAddPhoto);
+//   }
+// });
+
+// const popupCloseProfile = document.querySelector('.popup__close-profile');
+// popupCloseProfile.addEventListener("click", () => closePopup(popupEditProfile));
+
+// popupEditProfile.addEventListener('mousedown', (evt) => {
+//   if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')) {
+//     closePopup(popupEditProfile);
+//   }
+// });
 
 profileButton.addEventListener("click", openPopupProfile);
 formElement.addEventListener("submit", submitEditProfileForm);
 
 elements.addEventListener('click', function (evt) {
-  console.log(evt)
   if (evt.target.classList.contains('element__like'))
    evt.target.classList.toggle('element__like_active');
  });
