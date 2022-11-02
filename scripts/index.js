@@ -1,3 +1,4 @@
+
 const profileButton = document.querySelector(".profile__button");
 const popup = document.querySelector(".popup");
 const popupEditProfile = document.querySelector(".popup-edit-profile");
@@ -16,39 +17,82 @@ const inputCardName = document.querySelector(".popup__input_card_name");
 const inputCardLink = document.querySelector(".popup__input_card_link");
 const buttonAddFoto = document.querySelector('.popup__button-profil-add');
 
-initialCards.forEach(element => addCard(createCard(element.name, element.link)));
 
-function createCard(title, link) {
-  const card = directorTemplate.cloneNode(true);
-  const cardImage = card.querySelector(".element__image");
-  card.querySelector(".element__title").textContent = title;
-  cardImage.src = link;
-  cardImage.alt = title;
-  setListenersForButtons(card);
-  return card;
-}
+
+ class Card {
+  constructor(cardText, cardImage) {
+    this._cardText = cardText;
+    this._cardImage = cardImage;
+  }
+  _getTemplate() {
+    const directorTemplate = document
+    .querySelector('.element-template')
+    .content
+    .querySelector('.element')
+    .cloneNode(true);
+    return directorTemplate; 
+  }
+  createCard() {
+    const cardImage = document.querySelector(".element__image");
+    const cardText = document.querySelector(".element__title");
+    this._element = this._getTemplate();
+    
+    this._element.querySelector('.element__image').src = this._cardImage;
+    this._element.querySelector('.element__title').textContent = this._cardText;
+    setListenersForButtons();
+    return this._element;
+  }
+  _setListenersForButtons(element) {
+    const cardDeleteButton = element.querySelector(".element__delete-card");
+    cardDeleteButton.addEventListener("click", handleDelete);
+    const openImgButton = element.querySelector(".element__image");
+    openImgButton.addEventListener("click", handleOpenImgFullScreen);
+  }
+
+  _handleOpenImgFullScreen(add) {
+    popupImage.src = add.target.src;
+    popupText.textContent = add.target.alt;
+    popupImage.alt = popupText.textContent;
+    openPopup(popupShowPhoto);
+  }
+
+ }
+
+// function createCard(title, link) {
+//   const card = directorTemplate.cloneNode(true);
+//   const cardImage = card.querySelector(".element__image");
+//   card.querySelector(".element__title").textContent = title;
+//   cardImage.src = link;
+//   cardImage.alt = title;
+//   setListenersForButtons(card);
+//   return card;
+// }
+initialCards.forEach(element => 
+addCard(createCard(element.name, element.link)));
 
 function addCard(card) {
-  elements.prepend(card);
+  const card = new Card(mestoName.value, mestoLink.value);
+  const item = card.generateCard();
+  elements.prepend(item);
 }
 
-function setListenersForButtons(element) {
-  const cardDeleteButton = element.querySelector(".element__delete-card");
-  cardDeleteButton.addEventListener("click", handleDelete);
-  const openImgButton = element.querySelector(".element__image");
-  openImgButton.addEventListener("click", handleOpenImgFullScreen);
-}
+// function setListenersForButtons(element) {
+//   const cardDeleteButton = element.querySelector(".element__delete-card");
+//   cardDeleteButton.addEventListener("click", handleDelete);
+//   const openImgButton = element.querySelector(".element__image");
+//   openImgButton.addEventListener("click", handleOpenImgFullScreen);
+// }
 const popupShowPhoto = document.querySelector(".popup-show-photo");
 const elementImageList = document.querySelector(".element__image");
 const popupImage = document.querySelector(".popup__image");
 const popupText = document.querySelector(".popup__text");
 
-function handleOpenImgFullScreen(add) {
-  popupImage.src = add.target.src;
-  popupText.textContent = add.target.alt;
-  popupImage.alt = popupText.textContent;
-  openPopup(popupShowPhoto);
-}
+// function handleOpenImgFullScreen(add) {
+//   popupImage.src = add.target.src;
+//   popupText.textContent = add.target.alt;
+//   popupImage.alt = popupText.textContent;
+//   openPopup(popupShowPhoto);
+// }
 
 function handleDelete(evt) {
   const currentCard = evt.target.closest(".element"); //только первый родитель
