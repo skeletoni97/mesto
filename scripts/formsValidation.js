@@ -22,12 +22,10 @@ class FormValidator {
     if (errorElement.textContent !== "") {
       input.classList.add(this._setting.inputErrorClass);
       errorElement.classList.add(this._setting.errorClass);
-      console.log((errorElement.textContent === "") + "-----")
     } 
     if (errorElement.textContent === "") {
       input.classList.remove(this._setting.inputErrorClass);
       errorElement.classList.remove(this._setting.errorClass);
-      console.log((errorElement.textContent === "") + "dsds")
     }
   }
 
@@ -46,9 +44,9 @@ class FormValidator {
   enableValidation() {
     const allForms = document.querySelectorAll(this._setting.formSelector);
     for (const form of allForms) {
-      this._hendValiditeImput();
-    }
+      this._hendValiditeImput(form);
   } 
+}
 }
 
 const enableValidationConfig = {
