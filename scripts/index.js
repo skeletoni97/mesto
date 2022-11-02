@@ -17,7 +17,7 @@ const inputCardName = document.querySelector(".popup__input_card_name");
 const inputCardLink = document.querySelector(".popup__input_card_link");
 const buttonAddFoto = document.querySelector('.popup__button-profil-add');
 
-
+// initialCards.forEach(element => addCard(createCard(element.name, element.link)));
 
  class Card {
   constructor(cardText, cardImage) {
@@ -39,14 +39,25 @@ const buttonAddFoto = document.querySelector('.popup__button-profil-add');
     
     this._element.querySelector('.element__image').src = this._cardImage;
     this._element.querySelector('.element__title').textContent = this._cardText;
-    setListenersForButtons();
+    this._setListenersForButtons();
     return this._element;
   }
-  _setListenersForButtons(element) {
-    const cardDeleteButton = element.querySelector(".element__delete-card");
-    cardDeleteButton.addEventListener("click", handleDelete);
-    const openImgButton = element.querySelector(".element__image");
-    openImgButton.addEventListener("click", handleOpenImgFullScreen);
+  _setListenersForButtons() {
+    const cardDeleteButton = this._element.querySelector(".element__delete-card");
+    cardDeleteButton.addEventListener("click", this._handleDelete);
+    const openImgButton = this._element.querySelector(".element__image");
+    openImgButton.addEventListener("click", this._handleOpenImgFullScreen);
+  }
+  _handleDelete(evt) {
+    const currentCard = evt.target.closest(".element"); //только первый родитель
+    currentCard.remove();
+  }
+
+  _handleOpenImgFullScreen(add) {
+    popupImage.src = add.target.src;
+    popupText.textContent = add.target.alt;
+    popupImage.alt = popupText.textContent;
+    openPopup(popupShowPhoto);
   }
 
   _handleOpenImgFullScreen(add) {
@@ -67,15 +78,23 @@ const buttonAddFoto = document.querySelector('.popup__button-profil-add');
 //   setListenersForButtons(card);
 //   return card;
 // }
-initialCards.forEach(element => 
-addCard(createCard(element.name, element.link)));
+// initialCards.forEach(element => addCard(createCard(element.name, element.link)));
 
-function addCard(card) {
-  const card = new Card(mestoName.value, mestoLink.value);
-  const item = card.generateCard();
-  elements.prepend(item);
+// function addCard(card) {
+//   elements.prepend(card);
+// }
+
+function handleAddCard() {
+  const card = new Card()
+  const item = card.createCard()
+  elements.prepend(item)
 }
 
+initialCards.forEach((element) => {
+  const card = new Card(element.name, element.link)
+  const cardElement = card.createCard()
+  elements.prepend(cardElement)
+})
 // function setListenersForButtons(element) {
 //   const cardDeleteButton = element.querySelector(".element__delete-card");
 //   cardDeleteButton.addEventListener("click", handleDelete);
@@ -87,17 +106,9 @@ const elementImageList = document.querySelector(".element__image");
 const popupImage = document.querySelector(".popup__image");
 const popupText = document.querySelector(".popup__text");
 
-// function handleOpenImgFullScreen(add) {
-//   popupImage.src = add.target.src;
-//   popupText.textContent = add.target.alt;
-//   popupImage.alt = popupText.textContent;
-//   openPopup(popupShowPhoto);
-// }
 
-function handleDelete(evt) {
-  const currentCard = evt.target.closest(".element"); //только первый родитель
-  currentCard.remove();
-}
+
+
 
 function openPopupAddImg() {
   openPopup(popupAddPhoto);
