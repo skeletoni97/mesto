@@ -5,7 +5,7 @@ export default class FormValidator {
   }
 
   _setSubmitButton() {
-    console.log()
+    console.log();
     if (this._form.checkValidity()) {
       this._submitButton.removeAttribute("disabled");
       this._submitButton.classList.remove(this._setting.inactiveButtonClass);
@@ -16,50 +16,50 @@ export default class FormValidator {
   }
 
   _anValidField(input) {
-    const { inputErrorClass, errorClass } = this._setting
+    const { inputErrorClass, errorClass } = this._setting;
     const errorElement = this._form.querySelector(`#${input.id}-error`); //добавит часть id
     errorElement.textContent = input.validationMessage; //хранит поля ошибок
-      input.classList.add(inputErrorClass);
-      errorElement.classList.add(errorClass);
+    input.classList.add(inputErrorClass);
+    errorElement.classList.add(errorClass);
   }
 
   _isValidField(input) {
-    const {inputErrorClass, errorClass} = this._setting
+    const { inputErrorClass, errorClass } = this._setting;
     const errorElement = this._form.querySelector(`#${input.id}-error`); //добавит часть id
-     errorElement.textContent = input.validationMessage; //хранит поля ошибок
-      input.classList.remove(inputErrorClass);
-      errorElement.classList.remove(errorClass);
+    errorElement.textContent = input.validationMessage; //хранит поля ошибок
+    input.classList.remove(inputErrorClass);
+    errorElement.classList.remove(errorClass);
   }
 
   _checkInputValidity(input) {
     if (!input.checkValidity) {
-      this._anValidField(input)
+      this._anValidField(input);
     } else {
-      this._isValidField(input)
+      this._isValidField(input);
     }
   }
 
   _setFormEventListeners() {
-    this._currentForm = this._form.querySelectorAll(this._setting.inputSelector);
-    this._submitButton = this._form.querySelector(this._setting.submitButtonSelector);
-    console.log(this._submitButton + 'кнопка')
+    this._currentForm = this._form.querySelectorAll(
+      this._setting.inputSelector
+    );
+    this._submitButton = this._form.querySelector(
+      this._setting.submitButtonSelector
+    );
+    console.log(this._submitButton + "кнопка");
 
     for (let input of this._currentForm) {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
         this._setSubmitButton();
-        
       });
     }
   }
 
   enableValidation() {
-      this._setFormEventListeners();
+    this._setFormEventListeners();
   }
 }
-
-
-
 
 // function enableValidation(setting) {
 //   const allForms = document.querySelectorAll(setting.formSelector);
