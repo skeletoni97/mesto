@@ -3,7 +3,7 @@ export default class FormValidator {
     this._form = form;
     this._setting = setting;
   }
-  resetValidation() {
+  _resetValidation() {
     this._setSubmitButton();
 
     this._inputList.forEach((input) => {
@@ -43,6 +43,7 @@ export default class FormValidator {
   }
 
   _checkInputValidity(input) {
+   
     if (!input.checkValidity) {
       this._anValidField(input);
       
@@ -64,13 +65,14 @@ export default class FormValidator {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
         this._setSubmitButton();
+        
       });
     }
   }
 
   enableValidation() {
     this._setFormEventListeners();
-    resetValidation();
+    this._resetValidation();
     
   }
 }
