@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./card.js";
+import Card from "./Card.js";
 
 const profileButton = document.querySelector(".profile__button");
 const popupEditProfile = document.querySelector(".popup-edit-profile");
@@ -11,9 +11,9 @@ const profileStatus = document.querySelector(".profile__status");
 const formAddFoto = document.querySelector("#popup__content_foto");
 const profileAddButton = document.querySelector(".profile__add-button");
 const popupAddPhoto = document.querySelector(".popup-add-photo");
-const closeTypeAddImg = document.querySelector("#popup__close_add");
+// const closeTypeAddImg = document.querySelector("#popup__close_add");
 const elements = document.querySelector(".elements");
-const directorTemplate = document.querySelector(".element-template").content;
+// const directorTemplate = document.querySelector(".element-template").content;
 const inputCardName = document.querySelector(".popup__input_card_name");
 const inputCardLink = document.querySelector(".popup__input_card_link");
 const buttonAddFoto = document.querySelector(".popup__button-profil-add");
@@ -62,8 +62,8 @@ const enableValidationConfig = {
   errorClass: "popup__error_visible",
 };
 
-function handleAddCard(cardText, cardImage, template) {
-  const card = new Card(cardText, cardImage, template);
+function handleAddCard(cardText, cardImage, templateSelector) {
+  const card = new Card(cardText, cardImage, templateSelector);
   const newcard = card.createCard();
   addCard(newcard);
 }

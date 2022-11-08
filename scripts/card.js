@@ -1,13 +1,13 @@
 import { popupShowPhoto, popupImage, popupText, openPopup } from "./index.js";
 export default class Card {
-  constructor(cardText, cardImage, template) {
+  constructor(cardText, cardImage, templateSelector) {
     this._cardText = cardText;
     this._cardImage = cardImage;
-    this._Template = template;
+    this._templateSelector = templateSelector ;
   }
   _getTemplate() {
     const directorTemplate = document
-      .querySelector(this._Template)
+      .querySelector(this._templateSelector)
       .content.querySelector(".element")
       .cloneNode(true);
     return directorTemplate;
@@ -25,23 +25,21 @@ export default class Card {
   }
 
   _setListenersForButtons() {
-    this._elementLike.addEventListener("click", this._handleLike);
-    this.elementDeleteCard.addEventListener("click", this._handleDelete);
-    this._elementImage.addEventListener("click", this._handleOpenImgFullScreen);
+    this._elementLike.addEventListener("click", () => this._handleLike());
+    this.elementDeleteCard.addEventListener("click", () => this._handleDelete());
+    this._elementImage.addEventListener("click", () => this._handleOpenImgFullScreen());
   }
   _handleDelete(evt) {
-    const currentCard = evt.target.closest(".element"); //только первый родитель
-    currentCard.remove();
+    this._element.remove();
   }
   _handleLike(evt) {
-    if (evt.target.classList.contains("element__like"))
-      evt.target.classList.toggle("element__like_active");
+    this._elementLike.classList.toggle("element__like_active");
   }
 
   _handleOpenImgFullScreen(add) {
-    popupImage.src = add.target.src;
-    popupText.textContent = add.target.alt;
-    popupImage.alt = popupText.textContent;
+    popupImage.src = this._cardImage;
+    popupText.textContent = this._cardText;
+    popupImage.alt = this._cardImage;
     openPopup(popupShowPhoto);
   }
 }
