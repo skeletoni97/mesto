@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./сard.js"
+import Card from "./card.js"
 
 const profileButton = document.querySelector(".profile__button");
 const popupEditProfile = document.querySelector(".popup-edit-profile");
