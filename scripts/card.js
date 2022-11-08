@@ -29,14 +29,14 @@ export default class Card {
     this.elementDeleteCard.addEventListener("click", () => this._handleDelete());
     this._elementImage.addEventListener("click", () => this._handleOpenImgFullScreen());
   }
-  _handleDelete(evt) {
+  _handleDelete() {
     this._element.remove();
   }
-  _handleLike(evt) {
+  _handleLike() {
     this._elementLike.classList.toggle("element__like_active");
   }
 
-  _handleOpenImgFullScreen(add) {
+  _handleOpenImgFullScreen() {
     popupImage.src = this._cardImage;
     popupText.textContent = this._cardText;
     popupImage.alt = this._cardImage;
