@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./card.js"
+import Card from "./Card.js"
 
 const profileButton = document.querySelector(".profile__button");
 const popupEditProfile = document.querySelector(".popup-edit-profile");
@@ -60,11 +60,16 @@ const enableValidationConfig = {
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
-};
+}
 
-function handleAddCard(cardText, cardImage, templateSelector) {
+function CreateCardLayout(cardText, cardImage, templateSelector) {
   const card = new Card(cardText, cardImage, templateSelector);
   const newcard = card.createCard();
+  return newcard
+}
+
+function handleAddCard(cardText, cardImage, templateSelector) {
+  const newcard = CreateCardLayout(cardText, cardImage, templateSelector);
   addCard(newcard);
 }
 
@@ -73,8 +78,7 @@ function addCard(card) {
 }
 
 initialCards.forEach((element) => {
-  const card = new Card(element.name, element.link, ".element-template");
-  const cardElement = card.createCard();
+  const cardElement = CreateCardLayout(element.name, element.link, ".element-template");
   elements.prepend(cardElement);
 });
 
@@ -91,22 +95,27 @@ function submitEditPhotoForm(evt) {
 profileAddButton.addEventListener("click", openPopupAddImg);
 formAddFoto.addEventListener("submit", submitEditPhotoForm);
 
-function openPopupAddImg() {
-  const addcaedValidator = new FormValidator(enableValidationConfig, formAddFoto);
-  addcaedValidator.enableValidation(enableValidationConfig, formAddFoto);
+const addcaedValidator = new FormValidator(enableValidationConfig, formAddFoto);
+addcaedValidator.enableValidation();
 
+
+function openPopupAddImg() {
   openPopup(popupAddPhoto);
   inputCardName.value = "";
   inputCardLink.value = "";
-  
+  addcaedValidator.resetValidation(); 
+ 
 }
+
+const formCard = new FormValidator(enableValidationConfig, formElement);
+formCard.enableValidation();
 
 function openPopupProfile() {
   openPopup(popupEditProfile);
-  const formCard = new FormValidator(enableValidationConfig, formElement);
-  formCard.enableValidation(enableValidationConfig, formElement);
+  
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
+  
 }
 
 function openPopup(popup) {

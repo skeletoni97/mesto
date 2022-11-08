@@ -3,17 +3,15 @@ export default class FormValidator {
     this._form = form;
     this._setting = setting;
   }
-  _resetValidation() {
-    this._setSubmitButton();
 
+  resetValidation() {
+    this._setSubmitButton();
     this._inputList.forEach((input) => {
       this._isValidField(input)
     });
-
   } 
 
   _setSubmitButton() {
-    console.log();
     if (this._form.checkValidity()) {
       this._submitButton.removeAttribute("disabled");
       this._submitButton.classList.remove(this._setting.inactiveButtonClass);
@@ -29,8 +27,6 @@ export default class FormValidator {
     errorElement.textContent = input.validationMessage; //хранит поля ошибок
     input.classList.add(inputErrorClass);
     errorElement.classList.add(errorClass);
-    
-
   }
 
   _isValidField(input) {
@@ -43,10 +39,9 @@ export default class FormValidator {
   }
 
   _checkInputValidity(input) {
-   
-    if (!input.checkValidity) {
+    
+    if (!input.checkValidity()) {
       this._anValidField(input);
-      
     } else {
       this._isValidField(input);
     }
@@ -59,21 +54,17 @@ export default class FormValidator {
     this._submitButton = this._form.querySelector(
       this._setting.submitButtonSelector
     );
-    console.log(this._submitButton + "кнопка");
-
-    for (let input of this._inputList) {
+    
+    this._inputList.forEach((input) =>  {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
         this._setSubmitButton();
-        
       });
-    }
+    });
   }
 
   enableValidation() {
     this._setFormEventListeners();
-    this._resetValidation();
-    
   }
 }
 
