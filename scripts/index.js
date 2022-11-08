@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./Card.js"
+import Card from "./сard.js"
 
 const profileButton = document.querySelector(".profile__button");
 const popupEditProfile = document.querySelector(".popup-edit-profile");
@@ -92,17 +92,13 @@ profileAddButton.addEventListener("click", openPopupAddImg);
 formAddFoto.addEventListener("submit", submitEditPhotoForm);
 
 function openPopupAddImg() {
-  const addcaedValidator = new FormValidator(
-    enableValidationConfig,
-    formAddFoto
-  );
+  const addcaedValidator = new FormValidator(enableValidationConfig, formAddFoto);
   addcaedValidator.enableValidation(enableValidationConfig, formAddFoto);
 
   openPopup(popupAddPhoto);
   inputCardName.value = "";
   inputCardLink.value = "";
-  buttonAddFoto.classList.add("popup__button_disabled");
-  buttonAddFoto.setAttribute("disabled", true);
+  
 }
 
 function openPopupProfile() {

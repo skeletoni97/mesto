@@ -3,7 +3,7 @@ export default class FormValidator {
     this._form = form;
     this._setting = setting;
   }
-  _resetValidation() {
+  resetValidation() {
     this._setSubmitButton();
 
     this._inputList.forEach((input) => {
@@ -70,7 +70,8 @@ export default class FormValidator {
 
   enableValidation() {
     this._setFormEventListeners();
-    this._resetValidation()
+    resetValidation();
+    
   }
 }
 
