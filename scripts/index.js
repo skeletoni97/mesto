@@ -62,14 +62,14 @@ const enableValidationConfig = {
   errorClass: "popup__error_visible",
 }
 
-function CreateCardLayout(cardText, cardImage, templateSelector) {
+function createCardLayout(cardText, cardImage, templateSelector) {
   const card = new Card(cardText, cardImage, templateSelector);
   const newcard = card.createCard();
   return newcard
 }
 
 function handleAddCard(cardText, cardImage, templateSelector) {
-  const newcard = CreateCardLayout(cardText, cardImage, templateSelector);
+  const newcard = createCardLayout(cardText, cardImage, templateSelector);
   addCard(newcard);
 }
 
@@ -78,7 +78,7 @@ function addCard(card) {
 }
 
 initialCards.forEach((element) => {
-  const cardElement = CreateCardLayout(element.name, element.link, ".element-template");
+  const cardElement = createCardLayout(element.name, element.link, ".element-template");
   elements.prepend(cardElement);
 });
 
@@ -95,8 +95,8 @@ function submitEditPhotoForm(evt) {
 profileAddButton.addEventListener("click", openPopupAddImg);
 formAddFoto.addEventListener("submit", submitEditPhotoForm);
 
-const addcaedValidator = new FormValidator(enableValidationConfig, formAddFoto);
-addcaedValidator.enableValidation();
+const formAddFotoValidator = new FormValidator(enableValidationConfig, formAddFoto);
+formAddFotoValidator.enableValidation();
 
 function openPopupAddImg() {
   openPopup(popupAddPhoto);
@@ -106,8 +106,8 @@ function openPopupAddImg() {
  
 }
 
-const formCard = new FormValidator(enableValidationConfig, formElement);
-formCard.enableValidation();
+const formProfileValidator = new FormValidator(enableValidationConfig, formElement);
+formProfileValidator.enableValidation();
 
 function openPopupProfile() {
   openPopup(popupEditProfile);

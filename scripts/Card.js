@@ -31,6 +31,7 @@ export default class Card {
   }
   _handleDelete() {
     this._element.remove();
+    this._element = null;
   }
   _handleLike() {
     this._elementLike.classList.toggle("element__like_active");

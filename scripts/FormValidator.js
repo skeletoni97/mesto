@@ -32,7 +32,7 @@ export default class FormValidator {
   _isValidField(input) {
     const { inputErrorClass, errorClass } = this._setting;
     const errorElement = this._form.querySelector(`#${input.id}-error`); //добавит часть id
-    errorElement.textContent = input.validationMessage; //хранит поля ошибок
+    errorElement.textContent = "";
     input.classList.remove(inputErrorClass);
     errorElement.classList.remove(errorClass);
     
