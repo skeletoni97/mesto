@@ -98,7 +98,6 @@ formAddFoto.addEventListener("submit", submitEditPhotoForm);
 const addcaedValidator = new FormValidator(enableValidationConfig, formAddFoto);
 addcaedValidator.enableValidation();
 
-
 function openPopupAddImg() {
   openPopup(popupAddPhoto);
   inputCardName.value = "";
@@ -112,10 +111,8 @@ formCard.enableValidation();
 
 function openPopupProfile() {
   openPopup(popupEditProfile);
-  
   nameInput.value = profileName.textContent;
   jobInput.value = profileStatus.textContent;
-  
 }
 
 function openPopup(popup) {
