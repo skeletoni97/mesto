@@ -102,7 +102,7 @@ function openPopupAddImg() {
   openPopup(popupAddPhoto);
   inputCardName.value = "";
   inputCardLink.value = "";
-  addcaedValidator.resetValidation(); 
+  formAddFotoValidator.resetValidation(); 
  
 }
 
