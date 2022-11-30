@@ -5,7 +5,7 @@ import Popup from "../scripts/components/Popup.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
-
+import '../pages/index.css';
 import {
   profileButton,
   popupEditProfile,
