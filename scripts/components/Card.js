@@ -1,4 +1,4 @@
-import { popupShowPhoto, popupImage, popupText } from "../../pages/index.js";
+
 export default class Card {
   constructor(data, templateSelector, handleOpenImgFullScreen) {
     this._cardText = data.name;
