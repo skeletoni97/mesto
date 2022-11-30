@@ -1,9 +1,10 @@
-import { popupShowPhoto, popupImage, popupText, openPopup } from "./index.js";
+import { popupShowPhoto, popupImage, popupText } from "../../pages/index.js";
 export default class Card {
-  constructor(cardText, cardImage, templateSelector) {
-    this._cardText = cardText;
-    this._cardImage = cardImage;
+  constructor(data, templateSelector, handleOpenImgFullScreen) {
+    this._cardText = data.name;
+    this._cardImage = data.link;
     this._templateSelector = templateSelector ;
+    this.handleOpenImgFullScreen = handleOpenImgFullScreen;
   }
   _getTemplate() {
     const directorTemplate = document
@@ -27,7 +28,7 @@ export default class Card {
   _setListenersForButtons() {
     this._elementLike.addEventListener("click", () => this._handleLike());
     this.elementDeleteCard.addEventListener("click", () => this._handleDelete());
-    this._elementImage.addEventListener("click", () => this._handleOpenImgFullScreen());
+    this._elementImage.addEventListener("click", () => this.handleOpenImgFullScreen(this._cardText, this._cardImage));
   }
   _handleDelete() {
     this._element.remove();
@@ -37,12 +38,12 @@ export default class Card {
     this._elementLike.classList.toggle("element__like_active");
   }
 
-  _handleOpenImgFullScreen() {
-    popupImage.src = this._cardImage;
-    popupText.textContent = this._cardText;
-    popupImage.alt = this._cardImage;
-    openPopup(popupShowPhoto);
-  }
+  // _handleOpenImgFullScreen() {
+  //   popupImage.src = this._cardImage;
+  //   popupText.textContent = this._cardText;
+  //   popupImage.alt = this._cardImage;
+  //   this.open();
+  // }
 }
 
 // initialCards.forEach(element => addCard(createCard(element.name, element.link)));
