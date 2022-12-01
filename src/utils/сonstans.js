@@ -6,14 +6,10 @@ export const profileName = document.querySelector(".profile__name");
 export const profileStatus = document.querySelector(".profile__status");
 export const formAddFoto = document.querySelector("#popup__content_foto");
 export const popupAddPhoto = document.querySelector(".popup-add-photo");
-
 export const elements = document.querySelector(".elements");
-
 export const inputCardName = document.querySelector(".popup__input_card_name");
 export const inputCardLink = document.querySelector(".popup__input_card_link");
 export const buttonAddFoto = document.querySelector(".popup__button-profil-add");
-
-
 
 export const initialCards = [
   {

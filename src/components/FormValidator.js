@@ -61,10 +61,12 @@ export default class FormValidator {
         this._setSubmitButton();
       });
     });
+    
   }
 
   enableValidation() {
     this._setFormEventListeners();
+    
   }
 }
 

@@ -15,9 +15,9 @@ export default class Card {
   }
   createCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".element__image").alt = this._cardText;
-    this._element.querySelector(".element__image").src = this._cardImage;
     this._elementImage = this._element.querySelector(".element__image");
+    this._elementImage.alt = this._cardText;
+    this._elementImage.src = this._cardImage;
     this._elementLike = this._element.querySelector(".element__like");
     this.elementDeleteCard = this._element.querySelector(".element__delete-card");
     this._element.querySelector(".element__title").textContent = this._cardText;
