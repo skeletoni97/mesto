@@ -29,7 +29,6 @@ formAddFoto.addEventListener("submit", (evt) => {
     link: inputCardLink.value,
   };
   handleAddCard(element, ".element-template");
-  popupAddCard.close();//////////////
 });
 
 function handleAddCard(elements) {
