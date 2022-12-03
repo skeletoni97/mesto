@@ -22,14 +22,13 @@ import {
   enableValidationConfig,
 } from "../utils/сonstans.js";
 
-formAddFoto.addEventListener("submit", (evt) => {
-  evt.preventDefault();
+  function addFoto() {
   const element = {
     name: inputCardName.value,
     link: inputCardLink.value,
   };
   handleAddCard(element, ".element-template");
-});
+};
 
 function handleAddCard(elements) {
   const newcard = createCardLayout(elements, ".element-template");
@@ -68,15 +67,14 @@ function handleOpenImgFullScreen(title, link) {
   popupImg.open(title, link);
 }
 
-const popupAddCard = new PopupWithForm(popupAddPhoto, () => {
-
+const popupAddCard = new PopupWithForm(popupAddPhoto, (evt) => {
+  addFoto();
 });
 popupAddCard.setEventListeners();
 
 const values = popupAddCard._getInputValues();
 document.querySelector(".profile__add-button").addEventListener("click", () => {
-  buttonAddFoto.classList.add('popup__button_disabled');
-  buttonAddFoto.setAttribute("disabled", true);
+  formAddFotoValidator.disabledButton();
   popupAddCard.open(values);
 });
 

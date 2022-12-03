@@ -16,9 +16,13 @@ export default class FormValidator {
       this._submitButton.removeAttribute("disabled");
       this._submitButton.classList.remove(this._setting.inactiveButtonClass);
     } else {
-      this._submitButton.setAttribute("disabled", true);
-      this._submitButton.classList.add(this._setting.inactiveButtonClass);
+      this.disabledButton()
     }
+  }
+
+  disabledButton() {
+    this._submitButton.setAttribute("disabled", true);
+    this._submitButton.classList.add(this._setting.inactiveButtonClass);
   }
 
   _anValidField(input) {
