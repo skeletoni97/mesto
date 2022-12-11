@@ -18,10 +18,10 @@
         <img class="profile__avatar-foto"  src="<%=require('./image/image.png')%>" alt="фото вашего профиля">
         <div class="profile__info">
           <div class="profile__container">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" class="profile__button"></button>
           </div>
-          <p class="profile__status">Исследователь океана</p>
+          <p class="profile__status"></p>
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
@@ -39,7 +39,7 @@
         <h2 class="popup__title">Редактировать профиль</h2>
         <input class="popup__input popup__input_field_name" id="name" placeholder="Имя" name="name" type="text" required minlength="2" maxlength="40">
         <span class="form-error" id="name-error"></span>
-        <input class="popup__input popup__input_field_status" id="status" placeholder="Вид деятельности" name="status" type="text" required minlength="2" maxlength="200">
+        <input class="popup__input popup__input_field_status" id="status" placeholder="Вид деятельности" name="about" type="text" required minlength="2" maxlength="200">
         <span class="form-error" id="status-error"></span>
         <button disabled class="popup__button-save popup__submit popup__button-seve-profile-info" type="submit">Сохранить</button>
       </form>
@@ -50,7 +50,7 @@
       <form class="popup__content" id='popup__content_foto' name="form_add" novalidate>
         <button type="button" class="popup__close popup__close-add-photo"></button>
         <h2 class="popup__title">Новое место</h2>
-        <input name="nameCard" class="popup__input popup__input_card_name" id="name-card" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+        <input name="name" class="popup__input popup__input_card_name" id="name-card" type="text" placeholder="Название" minlength="2" maxlength="30" required>
         <span class="form-error" id="name-card-error"></span>
         <input  name="link" placeholder="Ссылка на картинку" id="link-card" class="popup__input popup__input_card_link" type="url" required>
         <span class="form-error" id="link-card-error"></span>
@@ -66,13 +66,27 @@
       <h2 class="popup__text"></h2>
     </div>
   </div>
+
+  <div class="popup popup-delite-img">
+    <div class="popup__container">
+      <form class="popup__content" id='popup__content_foto' name="form_add">
+        <button type="button" class="popup__close popup__close-add-photo"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__button-save popup__submit  popup__button-delite-img" id="popup__button-photo-add" type="submit">Да</button>
+      </form>
+    </div>
+  </div>
+
   <template class="element-template">
     <div class="element">
       <button class="element__delete-card" type="button"></button>
       <img class="element__image" src="#" type="button" alt="#">
       <div class="element__container">
         <h2 class="element__title"></h2>
-        <button class="element__like" type="button"></button>
+        <div class="element__like_zone">
+          <button class="element__like" type="button"></button>
+          <span  class="element__like_counter"></span>
+        </div>
       </div>
     </div>  
   </template>

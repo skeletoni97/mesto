@@ -5,14 +5,16 @@ export default class UserInfo {
 
   getUserInfo() {
     const userObject = {
-      status: this._profileStatus.textContent,
+      about: this._profileStatus.textContent,
       name: this._profileName.textContent,
     };
+    console.log(userObject)
     return userObject;
   }
 
-  setUserInfo({ name, status }) {
+  setUserInfo(name, about) {
     this._profileName.textContent = name;
-    this._profileStatus.textContent = status;
+    this._profileStatus.textContent = about ;
+    console.log('rev')
   }
 }
