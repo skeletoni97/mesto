@@ -2,7 +2,6 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._headers = headers;
     this._baseUrl = baseUrl;
-    //   this._id = id
   }
 
   getProfile() {
@@ -38,12 +37,10 @@ class Api {
       body: JSON.stringify(name, about, avatar),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .catch(console.log)
-      };
-  
+      .catch(console.log);
+  }
 
   addCard(name, link, _id) {
-    console.log(_id, "name");
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,

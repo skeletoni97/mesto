@@ -14,10 +14,5 @@ export default class Section {
 
     addItem(card) {
         this._containerSelector.append(card)
-    //     if(this._owner === this._userID) {
-    //         this._containerSelector.append(card)
-    //     } else {
-    //         this._containerSelector.prepend(card)
-    //     }
      }
     }     

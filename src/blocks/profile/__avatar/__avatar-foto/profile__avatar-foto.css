@@ -10,11 +10,6 @@
     
 }
 
-.profile__avatar_foto:hover {
-    opacity: 0.8;
-    
-}
-
 @media screen and (max-width: 767px) {
     .profile__avatar_foto {
         align-self: center;
