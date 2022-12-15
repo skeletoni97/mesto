@@ -1,4 +1,4 @@
-.profile__avatar-foto {
+.profile__avatar_foto {
     box-sizing: border-box;
     border-radius: 50%;
     width: 120px;
@@ -6,10 +6,17 @@
     margin-right: 30px;
     overflow: hidden;
     object-fit: cover;
+    z-index: 0;
+    
+}
+
+.profile__avatar_foto:hover {
+    opacity: 0.8;
+    
 }
 
 @media screen and (max-width: 767px) {
-    .profile__avatar-foto {
+    .profile__avatar_foto {
         align-self: center;
         margin: 0;
     }

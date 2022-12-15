@@ -1,0 +1,9 @@
+.profile__avatar {
+    margin: 0 30px 0 0;
+    max-height: 127px;
+    max-width: 127px;
+    position: relative;
+}
+.profile__avatar:hover {
+    background: rgba(0, 0, 0, 0.8);
+}

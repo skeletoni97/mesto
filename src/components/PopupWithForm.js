@@ -5,6 +5,8 @@ export default class PopupWithForm extends Popup {
         this._submitForm = submitForm
         this._form = this._popupSelector.querySelector('.popup__content')
         this._formData = this._popupSelector.querySelectorAll ('.popup__input')
+        this._submitButton = this._popupSelector.querySelector('.popup__submit')
+        this._buttonDefaultText = this._submitButton.textContent
 
     }
     setInputValues(values) {
@@ -29,16 +31,23 @@ export default class PopupWithForm extends Popup {
     return inputValues;
     }
     
-    changeSubmit(newchangeSubmit){
-        this._submitForm = newchangeSubmit;
-    }
+    // changeSubmit(newchangeSubmit){
+    //     this._submitForm = newchangeSubmit;
+    // }
 
     setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault()
             this._submitForm(this.form, this._getInputValues());
-            this.close();
+            
         });
     }
+    renderLoading(isLoading) {
+        if(isLoading) {
+          this._submitButton.textContent = 'Загрузка...'
+        } else {
+          this._submitButton.textContent = this._buttonDefaultText;
+        }
+      }
 }

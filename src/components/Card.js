@@ -1,6 +1,6 @@
 
 export default class Card {
-  constructor(data, templateSelector, handleOpenImgFullScreen, handeleDeleteClick) {
+  constructor(data, templateSelector, handleOpenImgFullScreen, handeleDeleteClick, handeleLikeClick ) {
     this._cardText = data.name;
     this._cardImage = data.link;
     this._likes = data.likes;
@@ -8,8 +8,8 @@ export default class Card {
     this._userID = data.userID;
     this._owner = data.owner
 
-
-    this.handeleDeleteClick = handeleDeleteClick
+    this.handeleLikeClick = handeleLikeClick;
+    this.handeleDeleteClick = handeleDeleteClick;
     this._templateSelector = templateSelector ;
     this.handleOpenImgFullScreen = handleOpenImgFullScreen;
   }
@@ -21,10 +21,31 @@ export default class Card {
     return directorTemplate;
   }
 
-  // _stLikes(){
-  //   const elementLikeCounter = this._element.querySelector('.element__like_counter');
-  //   elementLikeCounter.textContent = this._likes.lenght
-  // }
+  isLiked(){
+    const userlikes = this._likes.find(user => user._id === this._userID);
+    return userlikes
+  }
+
+  stLikes(newLikes){
+    
+    this._likes = newLikes
+    const elementLikeCounter = this._element.querySelector('.element__like_counter');
+    elementLikeCounter.textContent = this._likes.length
+    
+    if(this.isLiked()) {
+      this._Like()
+    } else {
+      this._unlike()
+
+    }
+  }
+
+  _unlike() {
+    this._elementLike.classList.remove("element__like_active");
+  }
+  _Like() {
+    this._elementLike.classList.add("element__like_active");
+  }
 
   createCard() {
     this._element = this._getTemplate();
@@ -38,22 +59,24 @@ export default class Card {
     if(this._owner !== this._userID) {
       this.elementDeleteCard.style.display = 'none'
     }
-    // this._stLikes();
+    this.stLikes(this._likes);
+    
     return this._element;
   }
 
  
 
   _setListenersForButtons() {
-    this._elementLike.addEventListener("click", () => this._handleLike());
+    this._elementLike.addEventListener("click", () => this.handeleLikeClick(this._id));
     this.elementDeleteCard.addEventListener("click", () => this.handeleDeleteClick(this._id));
     this._elementImage.addEventListener("click", () => this.handleOpenImgFullScreen(this._cardText, this._cardImage));
+  
+    
+   
   }
   _handleDelete() {
     this._element.remove();
     this._element = null;
   }
-  _handleLike() {
-    this._elementLike.classList.toggle("element__like_active");
-  }
+ 
 }
