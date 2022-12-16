@@ -55,20 +55,6 @@ export const userInfoConfig = {
   avatarSelector: '.profile__avatar-foto'
 }
 
-// export const containerConfig = {
-//   container: ".elements"
-// }
-
-// export const cardConfig = {
-//   buttonHeartClassActive: 'elements__like_active'
-// }
-
-// export const userInfoConfig = {
-//   nameSelector: '.profile__title',
-//   aboutSelector: '.profile__subtitle',
-//   avatarSelector: '.profile__avatar'
-// }
-
 export const popupSelectors = {
   popupImage: ".popup-show-photo",
   popupEdit: ".popup-edit-profile",

@@ -43,7 +43,7 @@ const listItem = new Section(
     },
   },
   elements
-);
+);g
 
 function createCardLayout(data, templateSelector) {
   const card = new Card(userID,
