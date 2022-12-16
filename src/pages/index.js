@@ -38,7 +38,6 @@ api.getInitialCards().then((cardList) => {
       items: cardList,
       renderer: (data) => {
         const newCard = createCardLayout(data, ".element-template");
-        console.log(data);
         listItem.addItem(newCard);
       },
     },
@@ -110,7 +109,6 @@ const popupAddCard = new PopupWithForm(popupAddPhoto, (evt, data) => {
     .addCard(data)
     .then((res) => {
       const card = createCardLayout(res, ".element-template");
-      console.log(res);
       elements.prepend(card);
     })
 
@@ -168,7 +166,7 @@ const avatarPopup = new PopupWithForm(popupAvatar, function (
 
 avatarPopup.setEventListeners();
 document
-  .querySelector(".profile__avatar_hover")
+  .querySelector(".profile__avatar-hover")
   .addEventListener("click", () => {
     avatarPopup.open();
   });
@@ -180,7 +178,7 @@ const popupDeliteCard = new PopupConfirm(popupDeliteImg, (id) => {
 });
 popupDeliteCard.setEventListeners();
 
-const profileAvatarSelector = document.querySelector(".profile__avatar_foto");
+const profileAvatarSelector = document.querySelector(".profile__avatar-foto");
 const userInfo = new UserInfo({
   profileName,
   profileStatus,

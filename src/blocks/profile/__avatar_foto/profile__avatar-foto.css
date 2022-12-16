@@ -1,4 +1,4 @@
-.profile__avatar_foto {
+.profile__avatar-foto {
     box-sizing: border-box;
     border-radius: 50%;
     width: 120px;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .profile__avatar_foto {
+    .profile__avatar-foto {
         align-self: center;
         margin: 0;
     }

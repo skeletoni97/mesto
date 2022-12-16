@@ -1,5 +1,5 @@
-.profile__avatar_hover {
-    background-image:  url(../../../../image/avatarSvg.svg);
+.profile__avatar-hover {
+    background-image:  url(../../../image/avatarSvg.svg);
     background-position: 50%;
     background-repeat: no-repeat;
     border-radius: 50%;
@@ -13,6 +13,6 @@
     transform: translateX(-50%);
     width: 121px;
 }
-.profile__avatar_hover:hover {
+.profile__avatar-hover:hover {
     opacity: 1;
 }
