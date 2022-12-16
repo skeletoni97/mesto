@@ -6,12 +6,14 @@ export default class Card {
     handeleDeleteClick,
     handeleLikeClick
   ) {
+    this._data = data;
     this._cardText = data.name;
     this._cardImage = data.link;
-    this._likes = data.likes;
-    this._id = data.id;
-    this._userID = data.userID;
-    this._owner = data.owner;
+    this._myId = '66fb0bc2ee9ca9f59b38b719';
+    // this._likes = data.likes;
+    // this._id = data._id;
+    // this._userID = data.userID;
+    // this._owner = data.owner;
 
     this.handeleLikeClick = handeleLikeClick;
     this.handeleDeleteClick = handeleDeleteClick;
@@ -27,14 +29,14 @@ export default class Card {
   }
 
   isLiked() {
-    const userlikes = this._likes.find((user) => user._id === this._userID);
+    const userlikes = this._data.likes.find((user) => user._id === this._myId);
     return userlikes;
   }
 
   setLikes(newLikes) {
-    this._likes = newLikes;
+    this._data.likes = newLikes;
     const elementLikeCounter = this._element.querySelector(".element__like_counter");
-    elementLikeCounter.textContent = this._likes.length;
+    elementLikeCounter.textContent = this._data.likes.length;
 
     if (this.isLiked()) {
       this._Like();
@@ -59,9 +61,9 @@ export default class Card {
     this.elementDeleteCard = this._element.querySelector( ".element__delete-card");
     this._element.querySelector(".element__title").textContent = this._cardText;
     this._setListenersForButtons();
-    this.setLikes(this._likes);
-
-    if (this._owner !== this._userID) {
+    this.setLikes(this._data.likes);
+  
+    if (this._data.owner._id !== this._myId) {
       this.elementDeleteCard.style.display = "none";
     }
     return this._element;
@@ -69,10 +71,10 @@ export default class Card {
 
   _setListenersForButtons() {
     this._elementLike.addEventListener("click", () =>
-      this.handeleLikeClick(this._id)
+      this.handeleLikeClick(this._data._id)
     );
     this.elementDeleteCard.addEventListener("click", () =>
-      this.handeleDeleteClick(this._id)
+      this.handeleDeleteClick(this._data._id)
     );
     this._elementImage.addEventListener("click", () =>
       this.handleOpenImgFullScreen(this._cardText, this._cardImage)
