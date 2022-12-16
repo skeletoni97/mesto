@@ -10,11 +10,7 @@ export default class Card {
     this._cardText = data.name;
     this._cardImage = data.link;
     this._myId = '66fb0bc2ee9ca9f59b38b719';
-    // this._likes = data.likes;
-    // this._id = data._id;
-    // this._userID = data.userID;
-    // this._owner = data.owner;
-
+   
     this.handeleLikeClick = handeleLikeClick;
     this.handeleDeleteClick = handeleDeleteClick;
     this._templateSelector = templateSelector;
