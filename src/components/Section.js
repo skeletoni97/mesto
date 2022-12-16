@@ -13,12 +13,10 @@ export default class Section {
     }
 
     addListItem(card) {
-        console.log(card)
         this._containerSelector.append(card)
      }
 
     addNewItem(card) {
-        console.log(card)
         this._containerSelector.prepend(card)
      }
     }     

@@ -11,6 +11,7 @@ export const elements = document.querySelector(".elements");
 export const inputCardName = document.querySelector(".popup__input_card_name");
 export const inputCardLink = document.querySelector(".popup__input_card_link");
 export const buttonAddFoto = document.querySelector(".popup__button-profil-add");
+export const buttonDeletevisabiliti = document.querySelector(".element__delete-card_visabiliti");
 
 export const initialCards = [
   {
