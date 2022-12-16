@@ -4,20 +4,25 @@ class Api {
     this._baseUrl = baseUrl;
   }
 
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+  } 
+
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
 
   editProfile(name, about) {
@@ -26,8 +31,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(name, about),
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
 
   updateAvatar(name, about, avatar) {
@@ -36,8 +40,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(name, about, avatar),
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
 
   addCard(name, link, _id) {
@@ -46,27 +49,21 @@ class Api {
       headers: this._headers,
       body: JSON.stringify(name, link, _id),
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
 
   addLike(id) {
@@ -74,9 +71,7 @@ class Api {
       method: "PUT",
       headers: this._headers,
     })
-      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-
-      .catch(console.log);
+      .then((res) => this._getResponseData(res))
   }
 
   // другие методы работы с API

@@ -3,7 +3,6 @@ import Popup from "../components/Popup";
 export default class PopupConfirm extends Popup {
   constructor(popupSelector, submitForm) {
     super(popupSelector);
-    this._submitForm = submitForm;
     this._form = this._popupSelector.querySelector(".popup__content");
   }
 
