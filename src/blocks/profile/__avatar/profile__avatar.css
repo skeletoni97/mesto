@@ -7,3 +7,9 @@
 .profile__avatar:hover {
     background: rgba(0, 0, 0, 0.8);
 }
+@media screen and (max-width: 767px) {
+    .profile__avatar {
+        align-self: center;
+        margin: auto;
+    }
+}
