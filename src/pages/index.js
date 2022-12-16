@@ -46,17 +46,6 @@ api.getInitialCards().then((cardList) => {
   listItem.renderer();
 });
 
-// function handleAddCard(elements) {
-//   console.log(elements)
-//   const newcard = createCardLayout(elements, ".element-template");
-//   listItem.addCard(newcard);
-// }
-
-// function addCard(card) {
-//   lisaddItem(card);
-//   console.log(card)
-// }
-
 function createCardLayout(data, templateSelector) {
   const card = new Card(
     data,
@@ -111,6 +100,7 @@ const popupAddCard = new PopupWithForm(popupAddPhoto, (evt, data) => {
       const card = createCardLayout(res, ".element-template");
       elements.prepend(card);
     })
+    .catch((error) => console.log(error))
 
     .finally(() => {
       popupAddCard.renderLoading(false);
