@@ -47,3 +47,31 @@ export const enableValidationConfig = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
 }
+
+export const userInfoConfig = {
+  nameSelector: '.profile__name',
+  aboutSelector: '.profile__status',
+  avatarSelector: '.profile__avatar-foto'
+}
+
+// export const containerConfig = {
+//   container: ".elements"
+// }
+
+// export const cardConfig = {
+//   buttonHeartClassActive: 'elements__like_active'
+// }
+
+// export const userInfoConfig = {
+//   nameSelector: '.profile__title',
+//   aboutSelector: '.profile__subtitle',
+//   avatarSelector: '.profile__avatar'
+// }
+
+export const popupSelectors = {
+  popupImage: ".popup-show-photo",
+  popupEdit: ".popup-edit-profile",
+  popupAddCard: ".popup-add-photo",
+  popupDelete: ".popup-delite-img",
+  popupAvatar: ".popup-avatar"
+}

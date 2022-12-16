@@ -10,18 +10,12 @@ import "../pages/index.css";
 import {
   popupcContentAvatar,
   profileButton,
-  popupEditProfile,
   formElement,
-  profileName,
-  profileStatus,
   formAddFoto,
-  popupAddPhoto,
   elements,
-  inputCardName,
-  inputCardLink,
-  buttonAddFoto,
-  initialCards,
   enableValidationConfig,
+  userInfoConfig,
+  popupSelectors
 } from "../utils/сonstans.js";
 
 import { api } from "../components/Api";
@@ -29,47 +23,16 @@ import { data } from "autoprefixer";
 
 let userID;
 
-// api.getProfile().then((res) => {
-//   userInfo.setUserInfo(res.name, res.about, res.avatar);
-//   userID = res._id;
-// });
-
-// api.getInitialCards().then((cardList) => {
-//   const listItem = new Section(
-//     {
-//       items: cardList,
-//       renderer: (data) => {
-//         const newCard = createCardLayout(data, ".element-template");
-//         listItem.addItem(newCard);
-//         console.log()
-//       },
-//     },
-//     elements
-//   );
-//   listItem.renderer();
-// });
 Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([res, items]) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       userID = res._id;
-      // items.forEach(data => {
-      //   const newCard = createCardLayout(data, ".element-template");
-      //   listItem.addItem(newCard);
-      // })
+     
       listItem.renderItems(items)
   })
   .catch((err) => {
     console.log(err);
   });
-
-// api.getInitialCards().then((items) => {
-//   console.log(items);
-//   items.forEach(data => {
-//     const newCard = createCardLayout(data, ".element-template");
-//     listItem.addItem(newCard);
-//   })
-//   listItem.renderer();
-// })
 
 const listItem = new Section(
   {
@@ -81,7 +44,6 @@ const listItem = new Section(
   },
   elements
 );
-// listItem.renderer();
 
 function createCardLayout(data, templateSelector) {
   const card = new Card(userID,
@@ -127,7 +89,7 @@ function createCardLayout(data, templateSelector) {
 }
 
 const popupImg = new PopupWithImage(
-  document.querySelector(".popup-show-photo")
+  popupSelectors.popupImage
 );
 popupImg.setEventListeners();
 
@@ -135,19 +97,20 @@ function handleOpenImgFullScreen(title, link) {
   popupImg.open(title, link);
 }
 
-const popupAddCard = new PopupWithForm(popupAddPhoto, (evt, data) => {
+const popupAddCard = new PopupWithForm(popupSelectors.popupAddCard, (evt, data) => {
   popupAddCard.renderLoading(true);
   api
     .addCard(data)
     .then((res) => {
       const card = createCardLayout(res, ".element-template");
       listItem.addNewItem(card);
+      popupAddCard.close();
     })
     .catch((error) => console.log(error))
 
     .finally(() => {
       popupAddCard.renderLoading(false);
-      popupAddCard.close();
+      
     });
 });
 popupAddCard.setEventListeners();
@@ -157,15 +120,13 @@ document.querySelector(".profile__add-button").addEventListener("click", () => {
   popupAddCard.open();
 });
 
-const popupProfile = new PopupWithForm(popupEditProfile, function (
+const popupProfile = new PopupWithForm(popupSelectors.popupEdit, function (
   evt,
-  name,
-  about,
-  avatar
+  data
 ) {
   popupProfile.renderLoading(true);
   api
-    .editProfile(name, about, avatar)
+    .editProfile(data)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       popupProfile.close();
@@ -177,16 +138,13 @@ const popupProfile = new PopupWithForm(popupEditProfile, function (
 });
 popupProfile.setEventListeners();
 
-const popupAvatar = document.querySelector(".popup-avatar");
-const avatarPopup = new PopupWithForm(popupAvatar, function (
+const avatarPopup = new PopupWithForm(popupSelectors.popupAvatar, function (
   evt,
-  name,
-  about,
-  avatar
+  data
 ) {
   avatarPopup.renderLoading(true);
   api
-    .updateAvatar(name, about, avatar)
+    .updateAvatar(data)
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about, res.avatar);
       avatarPopup.close();
@@ -205,16 +163,11 @@ document
     formAvatarValidator.disabledButton();
   });
 
-const popupDeliteImg = document.querySelector(".popup-delite-img");
-
-const popupDeliteCard = new PopupConfirm(popupDeliteImg);
+const popupDeliteCard = new PopupConfirm(popupSelectors.popupDelete);
 popupDeliteCard.setEventListeners();
 
-const profileAvatarSelector = document.querySelector(".profile__avatar-foto");
 const userInfo = new UserInfo(
-  profileName,
-  profileStatus,
-  profileAvatarSelector,
+  userInfoConfig
 );
 
 profileButton.addEventListener("click", () => {
