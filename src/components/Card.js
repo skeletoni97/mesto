@@ -56,18 +56,17 @@ export default class Card {
     this._elementImage.src = this._cardImage;
     this._elementLike = this._element.querySelector(".element__like");
     this.elementDeleteCard = this._element.querySelector( ".element__delete-card");
-    this.elementDeleteCardNone = this._element.querySelector( ".element__delete-card_none");
     this._elementLikeCounter = this._element.querySelector(".element__like_counter");
     this._element.querySelector(".element__title").textContent = this._cardText;
     this._setListenersForButtons();
     this.setLikes(this._data.likes);
-    this._deleteIfmyCard()
+    this._deleteRemovebuttonForOtherUsers()
 
     return this._element;
   }
-  _deleteIfmyCard () {
+  _deleteRemovebuttonForOtherUsers () {
     if (this._data.owner._id !== this._myId) {
-      this.elementDeleteCardNone.style.display = "none";
+      this.elementDeleteCard.remove(".element__delete-card");
     }
   }
 

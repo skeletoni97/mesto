@@ -4,7 +4,7 @@ import Popup from "../components/Popup";
 export default class PopupConfirm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._form = this._popupSelector.querySelector(".popup__content");
+    this._form = this._popupElement.querySelector(".popup__content");
   }
 
   changeSubmit(newchangeSubmit) {

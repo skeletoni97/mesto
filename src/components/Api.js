@@ -25,20 +25,20 @@ class Api {
       .then((res) => this._getResponseData(res))
   }
 
-  editProfile(name, about) {
+  editProfile(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(name, about),
+      body: JSON.stringify(data),
     })
       .then((res) => this._getResponseData(res))
   }
 
-  updateAvatar(name, about, avatar) {
+  updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      body: JSON.stringify(name, about, avatar),
+      body: JSON.stringify(data),
     })
       .then((res) => this._getResponseData(res))
   }
